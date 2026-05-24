@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VitaCore — Unlock Your Peak Potential</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --orange: #E85D24;
+  --orange-dim: #E85D2422;
+  --orange-mid: #E85D2444;
+  --bg: #0a0a0a;
+  --bg2: #141414;
+  --bg3: #1a1a1a;
+  --border: #222;
+  --border2: #2a2a2a;
+  --text: #ffffff;
+  --text2: #aaaaaa;
+  --text3: #666666;
+  --green: #1D9E75;
+  --purple: #534AB7;
+  --gold: #BA7517;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+
+/* SCREENS */
+.screen{display:none;min-height:100vh;animation:fadeIn .3s ease}
+.screen.active{display:flex;flex-direction:column}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* WELCOME */
+#welcome{background:linear-gradient(160deg,#1a0a00 0%,#0a0a0a 50%);position:relative;overflow:hidden;justify-content:space-between;padding:60px 24px 40px}
+#welcome::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,#E85D2433 0%,transparent 70%);pointer-events:none}
+.welcome-logo{text-align:center;margin-bottom:20px}
+.logo-icon{width:72px;height:72px;background:var(--orange);border-radius:22px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:32px;box-shadow:0 0 40px #E85D2466}
+.logo-name{font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:4px;color:var(--text)}
+.logo-tag{color:var(--text3);font-size:14px;margin-top:4px}
+.welcome-hero{background:var(--bg3);border-radius:24px;padding:24px;border:1px solid var(--border2);margin:20px 0}
+.hero-badge{color:var(--orange);font-size:12px;font-weight:600;margin-bottom:8px}
+.hero-title{color:var(--text);font-size:20px;font-weight:700;margin-bottom:6px}
+.hero-sub{color:var(--text3);font-size:13px;line-height:1.6}
+.welcome-stats{display:flex;gap:12px;margin:16px 0}
+.stat-pill{flex:1;background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:14px;text-align:center}
+.stat-num{color:var(--orange);font-size:20px;font-weight:700}
+.stat-lbl{color:var(--text3);font-size:11px;margin-top:2px}
+.welcome-btns{margin-top:auto;display:flex;flex-direction:column;gap:10px}
+
+/* BUTTONS */
+.btn{width:100%;border:none;border-radius:16px;padding:16px;font-size:15px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.btn-primary{background:var(--orange);color:#fff;box-shadow:0 4px 20px #E85D2444}
+.btn-primary:active{transform:scale(.97)}
+.btn-secondary{background:transparent;border:1px solid var(--border2);color:var(--text2)}
+.btn-google{background:var(--bg3);border:1px solid var(--border2);color:var(--text);display:flex;align-items:center;justify-content:center;gap:10px}
+.btn-outline{background:transparent;border:1px solid var(--orange);color:var(--orange)}
+
+/* REGISTER */
+#register{padding:24px;justify-content:space-between}
+.back-btn{background:none;border:none;color:var(--text3);font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;margin-bottom:24px;font-family:'DM Sans',sans-serif}
+.screen-title{font-size:26px;font-weight:700;margin-bottom:6px;line-height:1.2}
+.screen-sub{color:var(--text3);font-size:14px;margin-bottom:28px;line-height:1.5}
+.tabs{display:flex;background:var(--bg3);border-radius:12px;padding:4px;margin-bottom:20px}
+.tab{flex:1;padding:10px;border:none;border-radius:10px;background:transparent;color:var(--text3);font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.tab.active{background:var(--orange);color:#fff}
+.input-wrap{margin-bottom:14px}
+.input-label{color:var(--text3);font-size:12px;margin-bottom:6px;display:block}
+.input-field{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:14px;padding:14px 16px;color:var(--text);font-size:14px;outline:none;font-family:'DM Sans',sans-serif;transition:border-color .2s}
+.input-field:focus{border-color:var(--orange)}
+.input-field::placeholder{color:var(--text3)}
+.divider{display:flex;align-items:center;gap:12px;margin:16px 0}
+.divider-line{flex:1;height:1px;background:var(--border2)}
+.divider span{color:var(--text3);font-size:12px}
+.terms{color:var(--text3);font-size:11px;text-align:center;margin-top:12px;line-height:1.6}
+.terms span{color:var(--text2)}
+
+/* VERIFY */
+#verify{padding:24px;justify-content:space-between}
+.code-row{display:flex;gap:10px;justify-content:center;margin:28px 0}
+.code-box{width:50px;height:58px;background:var(--bg3);border:1px solid var(--border2);border-radius:14px;text-align:center;color:var(--text);font-size:24px;font-weight:700;outline:none;font-family:'DM Sans',sans-serif;transition:border-color .2s}
+.code-box:focus{border-color:var(--orange)}
+.resend{text-align:center;color:var(--text3);font-size:13px;margin-top:8px}
+.resend span{color:var(--orange);cursor:pointer}
+
+/* ONBOARDING */
+#onboarding{padding:24px;justify-content:space-between}
+.progress-bar{height:4px;background:var(--border2);border-radius:2px;margin-bottom:28px;overflow:hidden}
+.progress-fill{height:100%;background:var(--orange);border-radius:2px;transition:width .3s}
+.chips-col{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.chip{background:var(--bg3);border:1px solid var(--border2);border-radius:14px;padding:14px 16px;color:var(--text2);font-size:14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:12px}
+.chip.selected{background:var(--orange-dim);border-color:var(--orange);color:var(--text)}
+.chip-icon{font-size:20px;width:28px;text-align:center}
+
+/* PLAN */
+#plan{padding:24px;justify-content:space-between}
+.plan-card{border-radius:20px;padding:20px;margin-bottom:12px;border:2px solid var(--border2);cursor:pointer;transition:all .2s}
+.plan-card.selected{border-color:var(--orange);background:var(--bg3)}
+.plan-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.plan-name{font-size:18px;font-weight:700}
+.plan-price{color:var(--orange);font-size:24px;font-weight:700}
+.plan-price span{font-size:13px;color:var(--text3);font-weight:400}
+.plan-badge{background:var(--orange);color:#fff;font-size:10px;border-radius:8px;padding:3px 8px;font-weight:600}
+.plan-feature{display:flex;align-items:center;gap:8px;margin-bottom:6px;color:var(--text2);font-size:13px}
+.plan-feature::before{content:'✓';color:var(--orange);font-weight:700}
+.trial-box{background:#1D9E7511;border:1px solid #1D9E7544;border-radius:14px;padding:14px;margin-bottom:20px;display:flex;align-items:center;gap:10px;color:var(--green);font-size:13px}
+
+/* DASHBOARD */
+#dashboard{padding:0 0 80px}
+.dash-header{padding:20px 20px 0;display:flex;justify-content:space-between;align-items:center}
+.dash-greeting{color:var(--text3);font-size:13px}
+.dash-name{font-size:20px;font-weight:700;margin-top:2px}
+.avatar{width:40px;height:40px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+.dash-scroll{padding:16px 20px 0;overflow-y:auto}
+.ai-card{background:linear-gradient(135deg,#1a0800,#1a1a1a);border:1px solid var(--orange-mid);border-radius:20px;padding:16px;margin-bottom:14px}
+.ai-label{color:var(--orange);font-size:11px;font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.ai-text{color:var(--text2);font-size:13px;line-height:1.6}
+.score-card{background:var(--orange);border-radius:20px;padding:20px;margin-bottom:14px;position:relative;overflow:hidden}
+.score-card::after{content:'';position:absolute;right:-20px;top:-20px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.1)}
+.score-num{font-family:'Bebas Neue',sans-serif;font-size:64px;color:#fff;line-height:1}
+.score-label{color:rgba(255,255,255,.7);font-size:13px;margin-top:4px}
+.score-change{background:rgba(255,255,255,.2);border-radius:20px;padding:4px 10px;color:#fff;font-size:12px;display:inline-block;margin-top:8px}
+.stats-row{display:flex;gap:10px;margin-bottom:14px}
+.stat-box{flex:1;background:var(--bg3);border:1px solid var(--border2);border-radius:16px;padding:14px}
+.stat-val{font-size:18px;font-weight:700}
+.stat-lbl2{color:var(--text3);font-size:11px;margin-top:3px}
+.section-title{font-size:16px;font-weight:600;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.section-title span{color:var(--orange);font-size:12px;cursor:pointer}
+.activity-card{background:var(--bg3);border:1px solid var(--border2);border-radius:16px;padding:14px;margin-bottom:10px;display:flex;align-items:center;gap:14px;cursor:pointer}
+.activity-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.activity-info{flex:1}
+.activity-name{font-size:14px;font-weight:500}
+.activity-meta{color:var(--text3);font-size:12px;margin-top:2px}
+.activity-val{color:var(--orange);font-size:14px;font-weight:600}
+.streak-row{display:flex;gap:8px;margin-bottom:14px}
+.streak-day{flex:1;text-align:center}
+.streak-dot{width:36px;height:36px;border-radius:50%;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:13px}
+.streak-dot.done{background:var(--orange);color:#fff}
+.streak-dot.today{background:var(--orange-dim);border:2px solid var(--orange);color:var(--orange)}
+.streak-dot.empty{background:var(--bg3);border:1px solid var(--border2);color:var(--text3)}
+.streak-lbl{color:var(--text3);font-size:10px}
+
+/* WORKOUT */
+#workout{padding:0 0 80px}
+.page-header{padding:20px;display:flex;align-items:center;gap:14px}
+.page-title{font-size:22px;font-weight:700}
+.workout-hero{margin:0 20px 16px;background:linear-gradient(135deg,#1a0800,var(--bg3));border:1px solid var(--border2);border-radius:20px;padding:20px}
+.wh-tag{background:var(--orange-dim);color:var(--orange);font-size:11px;border-radius:8px;padding:4px 10px;display:inline-block;margin-bottom:10px;font-weight:600}
+.wh-title{font-size:22px;font-weight:700;margin-bottom:4px}
+.wh-meta{color:var(--text3);font-size:13px;margin-bottom:16px}
+.wh-btn{width:100%;background:var(--orange);border:none;border-radius:14px;padding:14px;color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
+.ex-list{padding:0 20px}
+.ex-item{background:var(--bg3);border:1px solid var(--border2);border-radius:16px;padding:14px 16px;margin-bottom:10px;display:flex;align-items:center;gap:14px}
+.ex-num{width:32px;height:32px;border-radius:10px;background:var(--orange-dim);color:var(--orange);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ex-info{flex:1}
+.ex-name{font-size:14px;font-weight:500}
+.ex-detail{color:var(--text3);font-size:12px;margin-top:2px}
+.ex-tag{font-size:10px;border-radius:8px;padding:3px 8px}
+
+/* NUTRITION */
+#nutrition{padding:0 0 80px}
+.ring-wrap{display:flex;justify-content:center;padding:20px 20px 0}
+.ring-container{position:relative;width:130px;height:130px}
+.ring-container svg{width:100%;height:100%}
+.ring-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+.ring-num{font-size:22px;font-weight:700}
+.ring-sub{color:var(--text3);font-size:11px}
+.macros-row{display:flex;gap:10px;padding:16px 20px;margin-bottom:4px}
+.macro-box{flex:1;background:var(--bg3);border:1px solid var(--border2);border-radius:14px;padding:12px;text-align:center}
+.macro-val{font-size:16px;font-weight:700}
+.macro-lbl{color:var(--text3);font-size:11px;margin-top:2px}
+.meal-card{background:var(--bg3);border:1px solid var(--border2);border-radius:16px;padding:16px;margin:0 20px 10px}
+.meal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.meal-name{font-size:15px;font-weight:500}
+.meal-cals{color:var(--orange);font-size:13px;font-weight:600}
+.meal-macros{display:flex;gap:16px}
+.meal-macro{color:var(--text3);font-size:12px}
+.meal-macro b{color:var(--text2)}
+
+/* COMMUNITY */
+#community{padding:0 0 80px}
+.challenge-card{background:var(--bg3);border:1px solid var(--border2);border-radius:20px;margin:0 20px 12px;overflow:hidden}
+.challenge-img{height:120px;background:linear-gradient(135deg,#1a2a1a,#0a1a0a);display:flex;align-items:center;justify-content:center;font-size:48px;position:relative}
+.challenge-badge{position:absolute;top:12px;left:12px;background:var(--orange);color:#fff;font-size:10px;border-radius:8px;padding:4px 8px;font-weight:600}
+.challenge-body{padding:14px}
+.challenge-title{font-size:16px;font-weight:600;margin-bottom:4px}
+.challenge-meta{color:var(--text3);font-size:12px;margin-bottom:12px}
+.challenge-progress{height:6px;background:var(--border2);border-radius:3px;overflow:hidden;margin-bottom:8px}
+.challenge-fill{height:100%;border-radius:3px;background:var(--orange)}
+.challenge-footer{display:flex;justify-content:space-between;align-items:center}
+.challenge-footer span{color:var(--text3);font-size:12px}
+.challenge-footer b{color:var(--orange)}
+.join-btn{background:var(--orange);border:none;border-radius:10px;padding:8px 16px;color:#fff;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
+
+/* NAVBAR */
+.navbar{position:fixed;bottom:0;left:0;right:0;background:var(--bg);border-top:1px solid var(--border);padding:10px 0 20px;display:flex;justify-content:space-around;z-index:100;max-width:500px;margin:0 auto}
+.nav-btn{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:0 16px;font-family:'DM Sans',sans-serif}
+.nav-icon{font-size:22px;color:var(--text3);transition:color .2s}
+.nav-label{font-size:10px;color:var(--text3);transition:color .2s}
+.nav-btn.active .nav-icon,.nav-btn.active .nav-label{color:var(--orange)}
+
+/* AI COACH PAGE */
+#aicoach{padding:0 0 80px}
+.chat-messages{padding:16px 20px;display:flex;flex-direction:column;gap:12px}
+.msg{max-width:80%;padding:14px 16px;border-radius:18px;font-size:14px;line-height:1.6}
+.msg-ai{background:var(--bg3);border:1px solid var(--border2);color:var(--text2);border-bottom-left-radius:4px;align-self:flex-start}
+.msg-ai .msg-name{color:var(--orange);font-size:11px;font-weight:600;margin-bottom:6px}
+.msg-user{background:var(--orange);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
+.chat-input-wrap{position:fixed;bottom:80px;left:0;right:0;padding:12px 20px;background:var(--bg);border-top:1px solid var(--border);max-width:500px;margin:0 auto;display:flex;gap:10px}
+.chat-input{flex:1;background:var(--bg3);border:1px solid var(--border2);border-radius:14px;padding:12px 16px;color:var(--text);font-size:14px;outline:none;font-family:'DM Sans',sans-serif}
+.chat-input::placeholder{color:var(--text3)}
+.chat-send{background:var(--orange);border:none;border-radius:12px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;flex-shrink:0}
+
+/* MAX WIDTH */
+.screen{max-width:500px;margin:0 auto;width:100%}
+body{display:flex;justify-content:center}
+.navbar{max-width:500px}
+</style>
+</head>
+<body>
+
+<!-- WELCOME -->
+<div id="welcome" class="screen active">
+  <div class="welcome-logo">
+    <div class="logo-icon">⚡</div>
+    <div class="logo-name">VITACORE</div>
+    <div class="logo-tag">Unlock Your Peak Potential</div>
+  </div>
+  <div class="welcome-stats">
+    <div class="stat-pill"><div class="stat-num">2M+</div><div class="stat-lbl">Users</div></div>
+    <div class="stat-pill"><div class="stat-num">20</div><div class="stat-lbl">Features</div></div>
+    <div class="stat-pill"><div class="stat-num">4.9★</div><div class="stat-lbl">Rating</div></div>
+  </div>
+  <div class="welcome-hero">
+    <div class="hero-badge">🔥 ALL-IN-ONE HEALTH PLATFORM</div>
+    <div class="hero-title">Workout · Nutrition · Sleep · Mind</div>
+    <div class="hero-sub">One AI-powered ecosystem personalized just for you. Everything you need to transform your life.</div>
+  </div>
+  <div class="welcome-btns">
+    <button class="btn btn-primary" onclick="go('register')">Get Started for Free</button>
+    <button class="btn btn-secondary" onclick="go('verify')">Already have an account? Sign In</button>
+  </div>
+</div>
+
+<!-- REGISTER -->
+<div id="register" class="screen">
+  <button class="back-btn" onclick="go('welcome')">← Back</button>
+  <div class="screen-title">Create your account</div>
+  <div class="screen-sub">Your account is personal and private. Only you have access.</div>
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('email')">Email</button>
+    <button class="tab" onclick="switchTab('phone')">Phone</button>
+  </div>
+  <div id="tab-email">
+    <div class="input-wrap">
+      <label class="input-label">Email address</label>
+      <input class="input-field" type="email" placeholder="your@email.com">
+    </div>
+    <div class="input-wrap">
+      <label class="input-label">Password</label>
+      <input class="input-field" type="password" placeholder="Create a strong password">
+    </div>
+  </div>
+  <div id="tab-phone" style="display:none">
+    <div class="input-wrap">
+      <label class="input-label">Phone number</label>
+      <input class="input-field" type="tel" placeholder="+351 912 345 678">
+    </div>
+  </div>
+  <button class="btn btn-primary" style="margin-top:8px" onclick="go('verify')">Create Account</button>
+  <div class="divider"><div class="divider-line"></div><span>or continue with</span><div class="divider-line"></div></div>
+  <button class="btn btn-google" onclick="go('onboarding')">🇬 &nbsp; Continue with Google</button>
+  <button class="btn btn-google" style="margin-top:10px" onclick="go('onboarding')">🍎 &nbsp; Continue with Apple</button>
+  <div class="terms">By continuing you agree to our <span>Terms of Service</span> and <span>Privacy Policy</span></div>
+</div>
+
+<!-- VERIFY -->
+<div id="verify" class="screen">
+  <button class="back-btn" onclick="go('register')">← Back</button>
+  <div class="screen-title">Verify your account</div>
+  <div class="screen-sub">Enter the 6-digit code sent to your email or phone.</div>
+  <div class="code-row">
+    <input class="code-box" maxlength="1" type="text">
+    <input class="code-box" maxlength="1" type="text">
+    <input class="code-box" maxlength="1" type="text">
+    <input class="code-box" maxlength="1" type="text">
+    <input class="code-box" maxlength="1" type="text">
+    <input class="code-box" maxlength="1" type="text">
+  </div>
+  <div class="resend">Didn't receive it? <span>Resend code</span></div>
+  <div style="margin-top:auto;padding-top:20px">
+    <button class="btn btn-primary" onclick="go('onboarding')">Verify & Continue</button>
+  </div>
+</div>
+
+<!-- ONBOARDING -->
+<div id="onboarding" class="screen">
+  <div class="progress-bar"><div class="progress-fill" id="ob-progress" style="width:33%"></div></div>
+  <div id="ob-step1">
+    <div class="screen-title">What's your primary goal?</div>
+    <div class="screen-sub">We'll personalize your VitaCore experience based on your objectives.</div>
+    <div class="chips-col">
+      <div class="chip" onclick="toggleChip(this)"><span class="chip-icon">🔥</span>Lose weight & burn fat</div>
+      <div class="chip" onclick="toggleChip(this)"><span class="chip-icon">💪</span>Build muscle & strength</div>
+      <div class="chip" onclick="toggleChip(this)"><span class="chip-icon">🏃</span>Improve endurance</div>
+      <div class="chip" onclick="toggleChip(this)"><span class="chip-icon">🧘</span>Mental health & wellness</div>
+      <div class="chip" onclick="toggleChip(this)"><span class="chip-icon">⚡</span>Boost daily energy</div>
+      <div class="chip" onclick="toggleChip(this)"><span class="chip-icon">🥗</span>Improve nutrition</div>
+    </div>
+    <button class="btn btn-primary" onclick="obNext(2)">Continue</button>
+  </div>
+  <div id="ob-step2" style="display:none">
+    <div class="screen-title">What's your fitness level?</div>
+    <div class="screen-sub">Be honest — the AI adjusts everything to your real pace.</div>
+    <div class="chips-col">
+      <div class="chip" onclick="toggleChip(this)"><span class="chip-icon">🌱</span>Beginner — just starting</div>
+      <div class="chip" onclick="toggleChip(this)"><span class="chip-icon">🚶</span>Basic — I train sometimes</div>
+      <div class="chip" onclick="toggleChip(this)"><span class="chip-icon">🏋️</span>Intermediate — I train regularly</div>
+      <div class="chip" onclick="toggleChip(this)"><span class="chip-icon">🏆</span>Advanced — I train every day</div>
+      <div class="chip" onclick="toggleChip(this)"><span class="chip-icon">👴</span>Senior — mobility & health</div>
+    </div>
+    <button class="btn btn-primary" onclick="obNext(3)">Continue</button>
+  </div>
+  <div id="ob-step3" style="display:none">
+    <div class="screen-title">Tell us about yourself</div>
+    <div class="screen-sub">This helps our AI create your perfect plan.</div>
+    <div class="input-wrap">
+      <label class="input-label">Your name</label>
+      <input class="input-field" type="text" placeholder="First name" id="user-name">
+    </div>
+    <div class="input-wrap">
+      <label class="input-label">Age</label>
+      <input class="input-field" type="number" placeholder="e.g. 28">
+    </div>
+    <div class="input-wrap">
+      <label class="input-label">Weight (kg)</label>
+      <input class="input-field" type="number" placeholder="e.g. 75">
+    </div>
+    <div class="input-wrap">
+      <label class="input-label">Height (cm)</label>
+      <input class="input-field" type="number" placeholder="e.g. 175">
+    </div>
+    <button class="btn btn-primary" onclick="finishOnboarding()">Get Started for Free</button>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="screen">
+  <div class="dash-header">
+    <div>
+      <div class="dash-greeting">Good morning,</div>
+      <div class="dash-name" id="dash-username">Alex 👋</div>
+    </div>
+    <div class="avatar" id="dash-avatar">A</div>
+  </div>
+  <div class="dash-scroll">
+    <div style="height:16px"></div>
+    <div class="ai-card">
+      <div class="ai-label">🤖 AI Coach — Vita</div>
+      <div class="ai-text">You slept 7h last night — great recovery! Today is strength day, your body is ready. Let's go! 💪</div>
+    </div>
+    <div class="score-card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div>
+          <div class="score-num">84</div>
+          <div class="score-label">Health Score today</div>
+          <div class="score-change">↑ 4% from last week</div>
+        </div>
+        <div style="text-align:right;color:rgba(255,255,255,.7);font-size:13px">Level 12<br><b style="color:#fff">Athlete</b></div>
+      </div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-box"><div class="stat-val" style="color:var(--orange)">🔥 12</div><div class="stat-lbl2">Day streak</div></div>
+      <div class="stat-box"><div class="stat-val" style="color:var(--green)">8,432</div><div class="stat-lbl2">Steps today</div></div>
+      <div class="stat-box"><div class="stat-val" style="color:var(--purple)">7.5h</div><div class="stat-lbl2">Sleep last night</div></div>
+    </div>
+    <div class="section-title">This week's streak <span>View all</span></div>
+    <div class="streak-row">
+      <div class="streak-day"><div class="streak-dot done">✓</div><div class="streak-lbl">Mon</div></div>
+      <div class="streak-day"><div class="streak-dot done">✓</div><div class="streak-lbl">Tue</div></div>
+      <div class="streak-day"><div class="streak-dot done">✓</div><div class="streak-lbl">Wed</div></div>
+      <div class="streak-day"><div class="streak-dot today">!</div><div class="streak-lbl">Thu</div></div>
+      <div class="streak-day"><div class="streak-dot empty">·</div><div class="streak-lbl">Fri</div></div>
+      <div class="streak-day"><div class="streak-dot empty">·</div><div class="streak-lbl">Sat</div></div>
+      <div class="streak-day"><div class="streak-dot empty">·</div><div class="streak-lbl">Sun</div></div>
+    </div>
+    <div class="section-title">Daily Activity <span onclick="showTab('workout')">See all</span></div>
+    <div class="activity-card" onclick="showTab('workout')">
+      <div class="activity-icon" style="background:#E85D2422">🏋️</div>
+      <div class="activity-info"><div class="activity-name">Morning HIIT</div><div class="activity-meta">Completed · 7:30 AM</div></div>
+      <div class="activity-val">420 kcal</div>
+    </div>
+    <div class="activity-card" onclick="showTab('nutrition')">
+      <div class="activity-icon" style="background:#1D9E7522">🥗</div>
+      <div class="activity-info"><div class="activity-name">Lunch: Quinoa Bowl</div><div class="activity-meta">Logged · 1:15 PM</div></div>
+      <div class="activity-val">650 kcal</div>
+    </div>
+    <div class="activity-card">
+      <div class="activity-icon" style="background:#534AB722">😴</div>
+      <div class="activity-info"><div class="activity-name">Last Night's Sleep</div><div class="activity-meta">Great Quality</div></div>
+      <div class="activity-val">7.5 hrs</div>
+    </div>
+    <div class="section-title">Community Challenge <span onclick="showTab('community')">See all</span></div>
+    <div class="challenge-card" style="margin:0 0 10px">
+      <div class="challenge-img">🏃<div class="challenge-badge">ACTIVE</div></div>
+      <div class="challenge-body">
+        <div class="challenge-title">The 50k Step Weekend</div>
+        <div class="challenge-meta">2 days left · 2,847 participants</div>
+        <div class="challenge-progress"><div class="challenge-fill" style="width:42%"></div></div>
+        <div class="challenge-footer"><span>42,300 / 50,000 steps</span><button class="join-btn">Join</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WORKOUT -->
+<div id="workout" class="screen">
+  <div class="page-header">
+    <div>
+      <div style="color:var(--text3);font-size:12px">TODAY'S PLAN</div>
+      <div class="page-title">Workout</div>
+    </div>
+  </div>
+  <div class="workout-hero">
+    <div class="wh-tag">⚡ Strength + Hypertrophy</div>
+    <div class="wh-title">Chest & Triceps</div>
+    <div class="wh-meta">45 min · 6 exercises · ~320 kcal</div>
+    <button class="wh-btn" onclick="alert('Starting guided workout with voice & timer!')">▶ Start Guided Workout</button>
+  </div>
+  <div class="ex-list">
+    <div class="ex-item">
+      <div class="ex-num">1</div>
+      <div class="ex-info"><div class="ex-name">Bench Press</div><div class="ex-detail">4 sets · 8–10 reps · 70kg</div></div>
+      <div class="ex-tag" style="background:#E85D2422;color:var(--orange)">Chest</div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-num">2</div>
+      <div class="ex-info"><div class="ex-name">Incline Dumbbell Fly</div><div class="ex-detail">3 sets · 12 reps · 20kg</div></div>
+      <div class="ex-tag" style="background:#E85D2422;color:var(--orange)">Chest</div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-num">3</div>
+      <div class="ex-info"><div class="ex-name">Tricep Pushdown</div><div class="ex-detail">4 sets · 12 reps · 35kg</div></div>
+      <div class="ex-tag" style="background:#1D9E7522;color:var(--green)">Triceps</div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-num">4</div>
+      <div class="ex-info"><div class="ex-name">Parallel Bar Dips</div><div class="ex-detail">3 sets · 10 reps · Bodyweight</div></div>
+      <div class="ex-tag" style="background:#1D9E7522;color:var(--green)">Triceps</div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-num">5</div>
+      <div class="ex-info"><div class="ex-name">Diamond Push-Up</div><div class="ex-detail">3 sets · 15 reps</div></div>
+      <div class="ex-tag" style="background:#534AB722;color:var(--purple)">Compound</div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-num">6</div>
+      <div class="ex-info"><div class="ex-name">Final Stretch</div><div class="ex-detail">10 minutes guided</div></div>
+      <div class="ex-tag" style="background:#BA751722;color:var(--gold)">Recovery</div>
+    </div>
+  </div>
+</div>
+
+<!-- NUTRITION -->
+<div id="nutrition" class="screen">
+  <div class="page-header">
+    <div>
+      <div style="color:var(--text3);font-size:12px">TODAY'S INTAKE</div>
+      <div class="page-title">Nutrition</div>
+    </div>
+  </div>
+  <div class="ring-wrap">
+    <div class="ring-container">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" fill="none" stroke="#1a1a1a" stroke-width="10"/>
+        <circle cx="50" cy="50" r="40" fill="none" stroke="var(--green)" stroke-width="10" stroke-dasharray="164 88" stroke-linecap="round" transform="rotate(-90 50 50)"/>
+      </svg>
+      <div class="ring-center"><div class="ring-num">1,700</div><div class="ring-sub">of 2,200 kcal</div></div>
+    </div>
+  </div>
+  <div class="macros-row">
+    <div class="macro-box"><div class="macro-val" style="color:var(--orange)">142g</div><div class="macro-lbl">Protein</div></div>
+    <div class="macro-box"><div class="macro-val" style="color:var(--gold)">180g</div><div class="macro-lbl">Carbs</div></div>
+    <div class="macro-box"><div class="macro-val" style="color:var(--purple)">58g</div><div class="macro-lbl">Fat</div></div>
+    <div class="macro-box"><div class="macro-val" style="color:var(--green)">2.1L</div><div class="macro-lbl">Water</div></div>
+  </div>
+  <div style="padding:0 20px"><div class="section-title">Today's Meals <span>+ Add meal</span></div></div>
+  <div class="meal-card">
+    <div class="meal-header"><div class="meal-name">☀️ Breakfast</div><div class="meal-cals">480 kcal</div></div>
+    <div class="meal-macros">
+      <div class="meal-macro"><b>38g</b> Protein</div>
+      <div class="meal-macro"><b>52g</b> Carbs</div>
+      <div class="meal-macro"><b>14g</b> Fat</div>
+    </div>
+  </div>
+  <div class="meal-card">
+    <div class="meal-header"><div class="meal-name">🌤 Lunch</div><div class="meal-cals">720 kcal</div></div>
+    <div class="meal-macros">
+      <div class="meal-macro"><b>58g</b> Protein</div>
+      <div class="meal-macro"><b>80g</b> Carbs</div>
+      <div class="meal-macro"><b>22g</b> Fat</div>
+    </div>
+  </div>
+  <div class="meal-card">
+    <div class="meal-header"><div class="meal-name">🌙 Dinner</div><div class="meal-cals" style="color:var(--text3)">Not logged yet</div></div>
+    <div style="color:var(--text3);font-size:13px">You still have 500 kcal available</div>
+  </div>
+</div>
+
+<!-- COMMUNITY -->
+<div id="community" class="screen">
+  <div class="page-header">
+    <div>
+      <div style="color:var(--text3);font-size:12px">GLOBAL RANK #47</div>
+      <div class="page-title">Community</div>
+    </div>
+  </div>
+  <div style="padding:0 20px 12px">
+    <div class="ai-card">
+      <div class="ai-label">🏆 Achievement unlocked!</div>
+      <div class="ai-text">🔥 <b style="color:var(--text)">7-Day Streak!</b> You completed 7 workouts in a row. +500 points earned. Keep it up!</div>
+    </div>
+  </div>
+  <div style="padding:0 20px"><div class="section-title">Active Challenges</div></div>
+  <div class="challenge-card">
+    <div class="challenge-img">🏃<div class="challenge-badge">12 DAYS LEFT</div></div>
+    <div class="challenge-body">
+      <div class="challenge-title">30-Day Ab Challenge</div>
+      <div class="challenge-meta">Do 100 abs per day · 2,847 participants</div>
+      <div class="challenge-progress"><div class="challenge-fill" style="width:60%"></div></div>
+      <div class="challenge-footer"><span>Progress: <b>18/30 days</b></span><span>You: <b>#312</b></span></div>
+    </div>
+  </div>
+  <div class="challenge-card">
+    <div class="challenge-img">👟<div class="challenge-badge">3 DAYS LEFT</div></div>
+    <div class="challenge-body">
+      <div class="challenge-title">Friend Steps Challenge</div>
+      <div class="challenge-meta">Most steps this week · 6 friends competing</div>
+      <div class="challenge-progress"><div class="challenge-fill" style="width:42%;background:var(--purple)"></div></div>
+      <div class="challenge-footer"><span>42,300 steps</span><span>You: <b style="color:var(--orange)">#2 of 6</b></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- AI COACH -->
+<div id="aicoach" class="screen">
+  <div class="page-header">
+    <div>
+      <div style="color:var(--text3);font-size:12px">POWERED BY AI</div>
+      <div class="page-title">Coach Vita</div>
+    </div>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="msg msg-ai">
+      <div class="msg-name">Coach Vita 🤖</div>
+      Good morning! I analyzed your data from last night. You slept 7h 12min with great quality. Your body is fully recovered and ready for today's strength workout. How are you feeling? 💪
+    </div>
+    <div class="msg msg-ai">
+      <div class="msg-name">Coach Vita 🤖</div>
+      Quick tip: You're 15g short of your protein goal today. A protein shake or Greek yogurt after your workout would be perfect!
+    </div>
+    <div class="msg msg-user">Thanks Vita! Feeling great today 🔥</div>
+    <div class="msg msg-ai">
+      <div class="msg-name">Coach Vita 🤖</div>
+      Amazing! That energy will carry you through the Chest & Triceps session. Remember to warm up properly — start with 5 min light cardio. You've got this! 🏋️
+    </div>
+  </div>
+  <div class="chat-input-wrap">
+    <input class="chat-input" type="text" placeholder="Ask Coach Vita anything..." id="chat-input">
+    <button class="chat-send" onclick="sendMessage()">➤</button>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<div class="navbar" id="navbar" style="display:none">
+  <button class="nav-btn active" id="nav-dashboard" onclick="showTab('dashboard')">
+    <div class="nav-icon">🏠</div><div class="nav-label">Home</div>
+  </button>
+  <button class="nav-btn" id="nav-workout" onclick="showTab('workout')">
+    <div class="nav-icon">🏋️</div><div class="nav-label">Workout</div>
+  </button>
+  <button class="nav-btn" id="nav-nutrition" onclick="showTab('nutrition')">
+    <div class="nav-icon">🥗</div><div class="nav-label">Nutrition</div>
+  </button>
+  <button class="nav-btn" id="nav-community" onclick="showTab('community')">
+    <div class="nav-icon">👥</div><div class="nav-label">Community</div>
+  </button>
+  <button class="nav-btn" id="nav-aicoach" onclick="showTab('aicoach')">
+    <div class="nav-icon">🤖</div><div class="nav-label">AI Coach</div>
+  </button>
+</div>
+
+<script>
+const mainScreens = ['dashboard','workout','nutrition','community','aicoach'];
+
+function go(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const isMain = mainScreens.includes(id);
+  document.getElementById('navbar').style.display = isMain ? 'flex' : 'none';
+}
+
+function showTab(id){
+  go(id);
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  const nb = document.getElementById('nav-'+id);
+  if(nb) nb.classList.add('active');
+}
+
+function switchTab(type){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('tab-email').style.display = type==='email'?'block':'none';
+  document.getElementById('tab-phone').style.display = type==='phone'?'block':'none';
+}
+
+function toggleChip(el){
+  el.classList.toggle('selected');
+}
+
+function obNext(step){
+  document.getElementById('ob-step'+(step-1)).style.display='none';
+  document.getElementById('ob-step'+step).style.display='block';
+  document.getElementById('ob-progress').style.width=(step/3*100)+'%';
+}
+
+function finishOnboarding(){
+  const name = document.getElementById('user-name').value || 'Alex';
+  document.getElementById('dash-username').textContent = name+' 👋';
+  document.getElementById('dash-avatar').textContent = name[0].toUpperCase();
+  go('dashboard');
+  showTab('dashboard');
+}
+
+function sendMessage(){
+  const input = document.getElementById('chat-input');
+  const msg = input.value.trim();
+  if(!msg) return;
+  const chat = document.getElementById('chat-messages');
+  const userMsg = document.createElement('div');
+  userMsg.className = 'msg msg-user';
+  userMsg.textContent = msg;
+  chat.appendChild(userMsg);
+  input.value = '';
+  setTimeout(()=>{
+    const aiMsg = document.createElement('div');
+    aiMsg.className = 'msg msg-ai';
+    aiMsg.innerHTML = '<div class="msg-name">Coach Vita 🤖</div>Great question! Based on your current progress and today\'s workout plan, I recommend staying hydrated and keeping your protein intake up. You\'re doing amazing! 💪';
+    chat.appendChild(aiMsg);
+    chat.scrollTop = chat.scrollHeight;
+  },1000);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+document.getElementById('chat-input').addEventListener('keydown',e=>{
+  if(e.key==='Enter') sendMessage();
+});
+
+document.querySelectorAll('.code-box').forEach((box,i,all)=>{
+  box.addEventListener('input',()=>{if(box.value&&i<all.length-1)all[i+1].focus()});
+  box.addEventListener('keydown',e=>{if(e.key==='Backspace'&&!box.value&&i>0)all[i-1].focus()});
+});
+</script>
+</body>
+</html>
